@@ -9,6 +9,7 @@ import { ItemTableComponent } from './components/item-table/item-table.component
 import { ItemFormComponent } from './components/item-form/item-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AddItemPageComponent } from './pages/add-item-page/add-item-page.compon
     ItemTableComponent,
     ItemFormComponent,
     AddItemPageComponent,
+    OrderFormComponent,
   ],
   imports: [
     SalesOrderRoutingModule,

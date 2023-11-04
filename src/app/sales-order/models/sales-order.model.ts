@@ -1,3 +1,5 @@
+import { Item } from './item.model';
+
 export interface SalesOrder {
   id: string;
   customer: string;
@@ -6,4 +8,5 @@ export interface SalesOrder {
   subtotal: number;
   vat: number;
   total: number;
+  items?: Item[];
 }

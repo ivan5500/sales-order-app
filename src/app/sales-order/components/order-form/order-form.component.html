@@ -1,0 +1,33 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <label for="id">ID:</label>
+  <input id="id" type="text" formControlName="id" />
+
+  <label for="customer">Customer:</label>
+  <input id="customer" type="text" formControlName="customer" />
+
+  <label for="creationDate">Creation Date:</label>
+  <input id="creationDate" type="text" formControlName="creationDate" />
+
+  <button>Add Item</button>
+  <sales-order-item-table
+    *ngIf="newOrder.items?.length"
+    [items]="newOrder.items!"
+  ></sales-order-item-table>
+
+  <label for="subtotal">Subtotal:</label>
+  <input id="subtotal" type="number" formControlName="subtotal" />
+  <label for="vat">VAT:</label>
+  <input id="vat" type="number" formControlName="vat" />
+  <label for="total">Total:</label>
+  <input id="total" type="number" formControlName="total" />
+
+  <button (click)="onCancel()">Cancel</button>
+  <button type="submit" [disabled]="!orderForm.valid">Save</button>
+</form>
+
+<div>
+  <hr />
+  <sales-order-item-form
+    (addItemEvent)="addItem($event)"
+  ></sales-order-item-form>
+</div>
