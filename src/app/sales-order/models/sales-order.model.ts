@@ -1,7 +1,8 @@
 export interface SalesOrder {
   id: string;
-  creationDate: Date;
-  cancellationDate: Date;
+  customer: string;
+  creationDate: Date | string;
+  cancellationDate: Date | string;
   subtotal: number;
   vat: number;
   total: number;
