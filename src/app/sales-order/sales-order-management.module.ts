@@ -6,6 +6,9 @@ import { ManagementPageComponent } from './pages/management-page/management-page
 import { ListTableComponent } from './components/list-table/list-table.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { ItemTableComponent } from './components/item-table/item-table.component';
+import { ItemFormComponent } from './components/item-form/item-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
 
 
 @NgModule({
@@ -14,10 +17,13 @@ import { ItemTableComponent } from './components/item-table/item-table.component
     ListPageComponent,
     ListTableComponent,
     ItemTableComponent,
+    ItemFormComponent,
+    AddItemPageComponent,
   ],
   imports: [
     SalesOrderRoutingModule,
     CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class SalesOrderModule { }

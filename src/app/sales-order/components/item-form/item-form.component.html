@@ -1,0 +1,12 @@
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="price">Price:</label>
+  <input id="price" type="text" formControlName="price" />
+
+  <label for="quantity">Quantity:</label>
+  <input id="quantity" type="number" formControlName="quantity" />
+  <p>Complete the form to enable button.</p>
+  <button (click)="onCancel()">Cancel</button>
+  <button type="submit" [disabled]="!itemForm.valid">Save</button>
+</form>
