@@ -5,6 +5,7 @@ import { SalesOrderRoutingModule } from './sales-order-routing.module';
 import { ManagementPageComponent } from './pages/management-page/management-page.component';
 import { ListTableComponent } from './components/list-table/list-table.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
+import { ItemTableComponent } from './components/item-table/item-table.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
     ManagementPageComponent,
     ListPageComponent,
     ListTableComponent,
+    ItemTableComponent,
   ],
   imports: [
     SalesOrderRoutingModule,
