@@ -7,6 +7,6 @@
   <label for="quantity">Quantity:</label>
   <input id="quantity" type="number" formControlName="quantity" />
   <p>Complete the form to enable button.</p>
-  <button (click)="onCancel()">Cancel</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
   <button type="submit" [disabled]="!itemForm.valid">Save</button>
 </form>
