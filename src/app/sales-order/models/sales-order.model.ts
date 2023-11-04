@@ -1,7 +1,7 @@
 import { Item } from './item.model';
 
 export interface SalesOrder {
-  id: string;
+  id?: string;
   customer: string;
   creationDate: Date | string;
   cancellationDate: Date | string;

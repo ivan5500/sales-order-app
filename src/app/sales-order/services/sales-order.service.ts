@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
 import { SalesOrder } from '../models/sales-order.model';
-import { ordersData } from './sales-order.data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SalesOrderService {
-  public orders!: SalesOrder[];
+  public orders: SalesOrder[] = [];
 
-  constructor() {}
+  constructor() {
+    this._loadLocalStorage();
+  }
 
   public getOrders(): SalesOrder[] {
-    this.orders = ordersData;
     console.log(this.orders);
-    return ordersData;
+    return this.orders;
+  }
+
+  public addOrder(order: SalesOrder): SalesOrder {
+    const newOrder: SalesOrder = { id: this._generateId(), ...order };
+    this.orders.push(newOrder);
+    this._saveLocalStorage();
+    return newOrder;
+  }
+
+  private _generateId(): string {
+    return 'ID_SO' + Math.floor(Math.random() * 100);
+  }
+
+  private _loadLocalStorage(): void {
+    if (!localStorage.getItem('orders')) return;
+    this.orders = JSON.parse(localStorage.getItem('orders')!);
+  }
+
+  private _saveLocalStorage(): void {
+    localStorage.setItem('orders', JSON.stringify(this.orders));
   }
 }

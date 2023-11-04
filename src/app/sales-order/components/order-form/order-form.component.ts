@@ -4,6 +4,7 @@ import { SalesOrder } from '../../models/sales-order.model';
 import { Item } from '../../models/item.model';
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
+import { SalesOrderService } from '../../services/sales-order.service';
 
 @Component({
   selector: 'sales-order-form',
@@ -22,9 +23,10 @@ export class OrderFormComponent {
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
     customer: new FormControl<string>(''),
-    creationDate: new FormControl<string>(
-      formatDate(new Date(), this.formatDat, 'en-US')
-    ),
+    creationDate: new FormControl<string>({
+      value: formatDate(new Date(), this.formatDat, 'en-US'),
+      disabled: false,
+    }),
     subtotal: new FormControl<number | null>(null),
     vat: new FormControl<number | null>(null),
     total: new FormControl<number | null>(null),
@@ -37,13 +39,16 @@ export class OrderFormComponent {
     return order;
   }
 
-  constructor(private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private _salesOrderService: SalesOrderService
+  ) {}
 
   public onSubmit(): void {
     if (this.orderForm.invalid) return;
 
     this.addOrderEvent.emit(this.newOrder);
-    console.log(this.newOrder);
+    this._salesOrderService.addOrder(this.newOrder);
 
     this.orderForm.reset();
   }
