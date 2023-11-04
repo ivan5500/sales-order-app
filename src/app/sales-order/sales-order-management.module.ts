@@ -10,6 +10,7 @@ import { ItemFormComponent } from './components/item-form/item-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
+import { FilterFormComponent } from './components/filter-form/filter-form.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { OrderFormComponent } from './components/order-form/order-form.component
     ItemFormComponent,
     AddItemPageComponent,
     OrderFormComponent,
+    FilterFormComponent,
   ],
   imports: [
     SalesOrderRoutingModule,

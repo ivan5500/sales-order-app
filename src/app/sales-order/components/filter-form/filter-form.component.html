@@ -1,0 +1,19 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="rangeCreationDate">
+    <p>Creation Date Range</p>
+    <label for="start">Start:</label>
+    <input id="start" type="text" formControlName="start" />
+    <label for="end">End:</label>
+    <input id="end" type="text" formControlName="end" />
+  </div>
+  <div formGroupName="rangeCancellDate">
+    <p>Cancellation Date Range</p>
+    <label for="startC">Start:</label>
+    <input id="startC" type="text" formControlName="start" />
+    <label for="endC">End:</label>
+    <input id="endC" type="text" formControlName="end" />
+  </div>
+
+  <button type="button" (click)="onReset()">Reset</button>
+  <button type="submit" [disabled]="!filterForm.valid">Filter</button>
+</form>
