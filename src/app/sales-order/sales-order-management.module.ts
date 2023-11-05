@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { FilterFormComponent } from './components/filter-form/filter-form.component';
-
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { FilterFormComponent } from './components/filter-form/filter-form.compon
   imports: [
     SalesOrderRoutingModule,
     CommonModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MaterialModule,
+  ],
 })
-export class SalesOrderModule { }
+export class SalesOrderModule {}
