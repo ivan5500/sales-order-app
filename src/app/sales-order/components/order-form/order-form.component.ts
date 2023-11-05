@@ -18,13 +18,12 @@ export class OrderFormComponent {
   public cancelAddEvent: EventEmitter<boolean> = new EventEmitter();
 
   public items: Item[] = [];
-  public formatDat: string = 'dd/MM/yyyy';
 
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
     customer: new FormControl<string>(''),
-    creationDate: new FormControl<string>({
-      value: formatDate(new Date(), this.formatDat, 'en-US'),
+    creationDate: new FormControl<Date>({
+      value: new Date(),
       disabled: false,
     }),
     subtotal: new FormControl<number | null>(null),

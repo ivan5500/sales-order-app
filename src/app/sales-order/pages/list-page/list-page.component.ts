@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesOrderService } from '../../services/sales-order.service';
 import { SalesOrder } from '../../models/sales-order.model';
+import { FilterSalesOrder } from '../../models/filter-sales-order.model';
 
 @Component({
   selector: 'sales-order-list-page',
@@ -13,5 +14,9 @@ export class ListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.orders = this._salesOrderService.getOrders();
+  }
+
+  public addFilter(filter: FilterSalesOrder): void {
+    this.orders = this._salesOrderService.filterOrders(filter);
   }
 }

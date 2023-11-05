@@ -3,8 +3,8 @@ import { Item } from './item.model';
 export interface SalesOrder {
   id?: string;
   customer: string;
-  creationDate: Date | string;
-  cancellationDate: Date | string;
+  creationDate: Date;
+  cancellationDate: Date;
   subtotal: number;
   vat: number;
   total: number;

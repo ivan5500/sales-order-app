@@ -1,4 +1,4 @@
 export interface FilterSalesOrder {
-  rangeCreationDate: { start: Date | string; end: Date | string };
-  rangeCancellDate: { start: Date | string; end: Date | string };
+  rangeCreationDate: { start: Date; end: Date };
+  rangeCancellDate: { start: Date; end: Date };
 }
