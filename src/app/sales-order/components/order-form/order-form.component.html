@@ -2,6 +2,10 @@
   <mat-form-field class="w-100">
     <mat-label>Customer</mat-label>
     <input matInput formControlName="customer" />
+    <span
+      *ngIf="isValidField('customer')"
+      class="form-text text-danger"
+    >Required field</span>
   </mat-form-field>
 
   <mat-form-field class="w-100">

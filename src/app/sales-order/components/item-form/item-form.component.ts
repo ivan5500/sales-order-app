@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Item } from '../../models/item.model';
 import { noWhitespaces } from 'src/app/shared/validators';
+import { ValidationService } from '../../services/validation.service';
 
 @Component({
   selector: 'sales-order-item-form',
@@ -37,6 +38,8 @@ export class ItemFormComponent {
     return item;
   }
 
+  constructor(private _validationService: ValidationService) {}
+
   public onSubmit(): void {
     if (this.itemForm.invalid) return;
     this.addItemEvent.emit(this.newItem);
@@ -45,5 +48,9 @@ export class ItemFormComponent {
   public onCancel(): void {
     this.itemForm.reset();
     this.cancelAddEvent.emit(true);
+  }
+
+  public isValidField(field: string) {
+    return this._validationService.isValidField(this.itemForm, field);
   }
 }

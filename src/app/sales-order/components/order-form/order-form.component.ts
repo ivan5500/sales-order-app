@@ -9,6 +9,7 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 import { noWhitespaces } from 'src/app/shared/validators';
 import { ItemService } from '../../services/item.service';
 import { VAT } from 'src/app/shared/util/constants';
+import { ValidationService } from '../../services/validation.service';
 
 @Component({
   selector: 'sales-order-form',
@@ -66,7 +67,8 @@ export class OrderFormComponent {
     private _router: Router,
     private _salesOrderService: SalesOrderService,
     public dialog: MatDialog,
-    private _itemService: ItemService
+    private _itemService: ItemService,
+    private _validationService: ValidationService
   ) {}
 
   public onSubmit(): void {
@@ -99,5 +101,8 @@ export class OrderFormComponent {
     const subtotal = this._itemService.getSubtotal(this.items);
     this.orderForm.controls.total.setValue(total);
     this.orderForm.controls.subtotal.setValue(subtotal);
+  }
+  public isValidField(field: string) {
+    return this._validationService.isValidField(this.orderForm, field);
   }
 }

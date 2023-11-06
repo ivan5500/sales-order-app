@@ -2,14 +2,26 @@
   <mat-form-field class="w-100">
     <mat-label>Name</mat-label>
     <input matInput formControlName="name" />
+    <span
+      *ngIf="isValidField('name')"
+      class="form-text text-danger"
+    >Required field</span>
   </mat-form-field>
   <mat-form-field class="w-100">
     <mat-label>Price</mat-label>
     <input type="number" matInput formControlName="price" />
+    <span
+      *ngIf="isValidField('price')"
+      class="form-text text-danger"
+    >Required numeric field (max 2 decimals)</span>
   </mat-form-field>
   <mat-form-field class="w-100">
     <mat-label>Quantity</mat-label>
     <input type="number" matInput formControlName="quantity" />
+    <span
+      *ngIf="isValidField('quantity')"
+      class="form-text text-danger"
+    >Required numeric field</span>
   </mat-form-field>
 
   <div class="row">
