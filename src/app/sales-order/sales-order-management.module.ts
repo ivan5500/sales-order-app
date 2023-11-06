@@ -13,6 +13,7 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { FilterFormComponent } from './components/filter-form/filter-form.component';
 import { MaterialModule } from '../material/material.module';
 import { AddOrderPageComponent } from './pages/add-order-page/add-order-page.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -32,5 +33,6 @@ import { AddOrderPageComponent } from './pages/add-order-page/add-order-page.com
     ReactiveFormsModule,
     MaterialModule,
   ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
 })
 export class SalesOrderModule {}
