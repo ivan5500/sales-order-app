@@ -9,4 +9,5 @@ export interface SalesOrder {
   vat: number;
   total: number;
   items?: Item[];
+  isCancel?: boolean;
 }

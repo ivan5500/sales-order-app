@@ -18,8 +18,13 @@ export class ListTableComponent implements OnInit {
     'subtotal',
     'vat',
     'total',
+    'actions',
   ];
   ngOnInit(): void {
     console.log(this.orders);
+  }
+
+  cancelOrder(cancellOrder: boolean): void {
+    console.log(cancellOrder);
   }
 }

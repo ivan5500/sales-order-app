@@ -15,6 +15,7 @@ import { MaterialModule } from '../material/material.module';
 import { AddOrderPageComponent } from './pages/add-order-page/add-order-page.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DialogAddComponent } from './components/dialog-add/dialog-add.component';
+import { CancelBtnComponent } from './components/cancel-btn/cancel-btn.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DialogAddComponent } from './components/dialog-add/dialog-add.component
     FilterFormComponent,
     AddOrderPageComponent,
     DialogAddComponent,
+    CancelBtnComponent,
   ],
   imports: [
     SalesOrderRoutingModule,

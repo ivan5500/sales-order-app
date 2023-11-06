@@ -23,6 +23,18 @@ export class SalesOrderService {
     this._saveLocalStorage();
     return newOrder;
   }
+  public cancelOrder(orderC: SalesOrder): SalesOrder {
+    orderC.isCancel = true;
+    orderC.cancellationDate = new Date();
+    this.orders = this.orders.map((order) => {
+      if (order.id === orderC.id) {
+        return { ...orderC };
+      }
+      return order;
+    });
+    this._saveLocalStorage();
+    return orderC;
+  }
 
   public filterOrders(filter: FilterSalesOrder): SalesOrder[] {
     return this.orders.filter((order) => {
