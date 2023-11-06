@@ -14,7 +14,7 @@ export class SalesOrderService {
 
   public getOrders(): SalesOrder[] {
     console.log(this.orders);
-    return this.orders;
+    return [...this.orders];
   }
 
   public addOrder(order: SalesOrder): SalesOrder {

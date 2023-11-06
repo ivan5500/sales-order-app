@@ -10,6 +10,15 @@ export class ListTableComponent implements OnInit {
   @Input()
   public orders: SalesOrder[] = [];
   public formatDate: string = 'dd/MM/yyyy';
+  public displayedColumns: string[] = [
+    'id',
+    'customer',
+    'creationDate',
+    'cancellationDate',
+    'subtotal',
+    'vat',
+    'total',
+  ];
   ngOnInit(): void {
     console.log(this.orders);
   }
