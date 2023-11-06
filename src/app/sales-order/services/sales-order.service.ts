@@ -52,7 +52,10 @@ export class SalesOrderService {
     filter: FilterSalesOrder,
     order: SalesOrder
   ): boolean {
-    if (filter.rangeCreationDate.start && order.creationDate) {
+    if (!order.creationDate) {
+      return false;
+    }
+    if (filter.rangeCreationDate.start) {
       const createDate = new Date(order.creationDate).setHours(0, 0, 0, 0);
       const start = new Date(filter.rangeCreationDate.start).setHours(
         0,
@@ -69,8 +72,16 @@ export class SalesOrderService {
     filter: FilterSalesOrder,
     order: SalesOrder
   ): boolean {
-    if (filter.rangeCancellDate.start && order.cancellationDate) {
-      const cancellDate = new Date(order.cancellationDate).setHours(0, 0, 0, 0);
+    if (!order.cancellationDate) {
+      return false;
+    }
+    if (filter.rangeCancellDate.start) {
+      const cancellDate = new Date(order.cancellationDate!).setHours(
+        0,
+        0,
+        0,
+        0
+      );
       const start = new Date(filter.rangeCancellDate.start).setHours(
         0,
         0,
