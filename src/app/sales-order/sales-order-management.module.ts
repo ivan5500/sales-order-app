@@ -12,6 +12,7 @@ import { AddItemPageComponent } from './pages/add-item-page/add-item-page.compon
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { FilterFormComponent } from './components/filter-form/filter-form.component';
 import { MaterialModule } from '../material/material.module';
+import { AddOrderPageComponent } from './pages/add-order-page/add-order-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MaterialModule } from '../material/material.module';
     AddItemPageComponent,
     OrderFormComponent,
     FilterFormComponent,
+    AddOrderPageComponent,
   ],
   imports: [
     SalesOrderRoutingModule,
