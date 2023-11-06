@@ -1,7 +1,7 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
   <mat-form-field formGroupName="rangeCreationDate" class="w-100 mb-2">
     <mat-label>Creation date</mat-label>
-    <mat-date-range-input [rangePicker]="pickerCreation">
+    <mat-date-range-input [rangePicker]="pickerCreation" [max]="maxDate">
       <input matStartDate placeholder="Start date" formControlName="start" />
       <input matEndDate placeholder="End date" formControlName="end" />
     </mat-date-range-input>
@@ -17,7 +17,7 @@
 
   <mat-form-field formGroupName="rangeCancellDate" class="w-100 mb-2">
     <mat-label>Cancellation date</mat-label>
-    <mat-date-range-input [rangePicker]="pickerCancellation">
+    <mat-date-range-input [rangePicker]="pickerCancellation" [max]="maxDate">
       <input matStartDate placeholder="Start date" formControlName="start" />
       <input matEndDate placeholder="End date" formControlName="end" />
     </mat-date-range-input>
@@ -43,13 +43,7 @@
       </button>
     </div>
     <div class="col" id="filter-btn">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-      >
-        Filter
-      </button>
+      <button mat-raised-button color="primary" type="submit">Filter</button>
     </div>
   </div>
 </form>

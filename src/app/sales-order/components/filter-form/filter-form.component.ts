@@ -12,6 +12,7 @@ export class FilterFormComponent {
   public addFilterEvent: EventEmitter<FilterSalesOrder> = new EventEmitter();
   @Output()
   public resetFilterEvent: EventEmitter<boolean> = new EventEmitter();
+  public maxDate: Date = new Date();
 
   public filterForm = new FormGroup({
     rangeCreationDate: new FormGroup({
