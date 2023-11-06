@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SalesOrder } from '../../models/sales-order.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogCardComponent } from '../dialog-card/dialog-card.component';
 
 @Component({
   selector: 'sales-order-list-table',
@@ -20,11 +22,21 @@ export class ListTableComponent implements OnInit {
     'total',
     'actions',
   ];
+  constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
     console.log(this.orders);
   }
 
   cancelOrder(cancellOrder: boolean): void {
     console.log(cancellOrder);
+  }
+  showDetails(order: SalesOrder): void {
+    const dialogRef = this.dialog.open(DialogCardComponent, {
+      data: order,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }
