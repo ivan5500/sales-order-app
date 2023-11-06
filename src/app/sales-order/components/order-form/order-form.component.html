@@ -28,8 +28,8 @@
     </div>
   </div>
   <sales-order-item-table
-    *ngIf="newOrder.items?.length"
-    [items]="newOrder.items!"
+    *ngIf="items.length"
+    [items]="items"
   ></sales-order-item-table>
 
   <mat-form-field class="w-100">

@@ -31,7 +31,7 @@ export class OrderFormComponent {
     vat: new FormControl<number | null>({ value: 0, disabled: true }),
     total: new FormControl<number | null>({ value: 0, disabled: true }),
 
-    items: new FormControl<Item[]>([]),
+    items: new FormControl<Item[]>(this.items),
   });
 
   get newOrder(): SalesOrder {
@@ -47,6 +47,7 @@ export class OrderFormComponent {
 
   public onSubmit(): void {
     if (this.orderForm.invalid) return;
+    this.newOrder.items = this.items;
 
     this.addOrderEvent.emit(this.newOrder);
     this._salesOrderService.addOrder(this.newOrder);
@@ -59,7 +60,7 @@ export class OrderFormComponent {
     this._router.navigate(['..']);
   }
   public addItem(item: Item): void {
-    this.newOrder.items = [item, ...this.newOrder.items!];
+    this.items = [item, ...this.items];
   }
   public openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddComponent, { data: {} });
