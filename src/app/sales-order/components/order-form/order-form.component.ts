@@ -7,6 +7,7 @@ import { SalesOrderService } from '../../services/sales-order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 import { noWhitespaces } from 'src/app/shared/validators';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'sales-order-form',
@@ -48,10 +49,15 @@ export class OrderFormComponent {
     return order;
   }
 
+  get subtotalItems(): number {
+    return this._itemService.getSubtotal(this.items);
+  }
+
   constructor(
     private _router: Router,
     private _salesOrderService: SalesOrderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _itemService: ItemService
   ) {}
 
   public onSubmit(): void {
