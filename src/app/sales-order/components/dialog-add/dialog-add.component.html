@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Add Item</h1>
+<div mat-dialog-content>
+    <sales-order-item-form
+    (addItemEvent)="onAddItem($event)"
+    (cancelAddEvent)="onCancelAdd($event)"
+  ></sales-order-item-form>
+</div>

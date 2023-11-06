@@ -2,9 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SalesOrder } from '../../models/sales-order.model';
 import { Item } from '../../models/item.model';
-import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 import { SalesOrderService } from '../../services/sales-order.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 
 @Component({
   selector: 'sales-order-form',
@@ -40,7 +41,8 @@ export class OrderFormComponent {
 
   constructor(
     private _router: Router,
-    private _salesOrderService: SalesOrderService
+    private _salesOrderService: SalesOrderService,
+    public dialog: MatDialog
   ) {}
 
   public onSubmit(): void {
@@ -58,5 +60,13 @@ export class OrderFormComponent {
   }
   public addItem(item: Item): void {
     this.newOrder.items = [item, ...this.newOrder.items!];
+  }
+  public openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddComponent, { data: {} });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.addItem(result);
+    });
   }
 }
