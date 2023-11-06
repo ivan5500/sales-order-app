@@ -15,12 +15,12 @@ export class FilterFormComponent {
 
   public filterForm = new FormGroup({
     rangeCreationDate: new FormGroup({
-      start: new FormControl<Date | null>(null),
-      end: new FormControl<Date | null>(null),
+      start: new FormControl<Date | null>({ value: null, disabled: true }),
+      end: new FormControl<Date | null>({ value: null, disabled: true }),
     }),
     rangeCancellDate: new FormGroup({
-      start: new FormControl<Date | null>(null),
-      end: new FormControl<Date | null>(null),
+      start: new FormControl<Date | null>({ value: null, disabled: true }),
+      end: new FormControl<Date | null>({ value: null, disabled: true }),
     }),
   });
 

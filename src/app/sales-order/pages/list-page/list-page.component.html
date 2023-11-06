@@ -3,14 +3,14 @@
     <h1>Sale Order List</h1>
   </div>
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-3">
       <sales-order-filter-form
         (addFilterEvent)="addFilter($event)"
       ></sales-order-filter-form>
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-8">
       <sales-order-list-table [orders]="orders"></sales-order-list-table>
     </div>
   </div>
