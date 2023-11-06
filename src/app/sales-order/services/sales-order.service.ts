@@ -40,15 +40,16 @@ export class SalesOrderService {
     filter: FilterSalesOrder,
     order: SalesOrder
   ): boolean {
-    if (filter.rangeCreationDate.start) {
-      order.creationDate.setHours(0, 0, 0, 0);
-      filter.rangeCreationDate.start.setHours(0, 0, 0, 0);
-      filter.rangeCreationDate.end.setHours(0, 0, 0, 0);
-      return (
-        new Date(order.creationDate) >=
-          new Date(filter.rangeCreationDate.start) &&
-        new Date(order.creationDate) <= new Date(filter.rangeCreationDate.end)
+    if (filter.rangeCreationDate.start && order.creationDate) {
+      const createDate = new Date(order.creationDate).setHours(0, 0, 0, 0);
+      const start = new Date(filter.rangeCreationDate.start).setHours(
+        0,
+        0,
+        0,
+        0
       );
+      const end = new Date(filter.rangeCreationDate.end).setHours(0, 0, 0, 0);
+      return createDate >= start && createDate <= end;
     }
     return true;
   }
@@ -56,16 +57,16 @@ export class SalesOrderService {
     filter: FilterSalesOrder,
     order: SalesOrder
   ): boolean {
-    if (filter.rangeCancellDate.start) {
-      order.cancellationDate.setHours(0, 0, 0, 0);
-      filter.rangeCancellDate.start.setHours(0, 0, 0, 0);
-      filter.rangeCancellDate.end.setHours(0, 0, 0, 0);
-      return (
-        new Date(order.cancellationDate) >=
-          new Date(filter.rangeCancellDate.start) &&
-        new Date(order.cancellationDate) <=
-          new Date(filter.rangeCancellDate.start)
+    if (filter.rangeCancellDate.start && order.cancellationDate) {
+      const cancellDate = new Date(order.cancellationDate).setHours(0, 0, 0, 0);
+      const start = new Date(filter.rangeCancellDate.start).setHours(
+        0,
+        0,
+        0,
+        0
       );
+      const end = new Date(filter.rangeCancellDate.end).setHours(0, 0, 0, 0);
+      return cancellDate >= start && cancellDate <= end;
     }
     return true;
   }
