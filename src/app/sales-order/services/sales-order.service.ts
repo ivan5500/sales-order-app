@@ -37,15 +37,36 @@ export class SalesOrderService {
   }
 
   public filterOrders(filter: FilterSalesOrder): SalesOrder[] {
-    return this.orders.filter((order) => {
-      if (!this._filterByCreationDate(filter, order)) {
-        return false;
-      }
-      if (!this._filterByCancellDate(filter, order)) {
-        return false;
-      }
-      return true;
-    });
+    if (filter.rangeCreationDate.start && !filter.rangeCancellDate.start) {
+      return this.orders.filter((order) => {
+        if (!this._filterByCreationDate(filter, order)) {
+          return false;
+        }
+        return true;
+      });
+    }
+    if (!filter.rangeCreationDate.start && filter.rangeCancellDate.start) {
+      return this.orders.filter((order) => {
+        if (!this._filterByCancellDate(filter, order)) {
+          return false;
+        }
+        return true;
+      });
+    } else {
+      return this.orders
+        .filter((order) => {
+          if (!this._filterByCreationDate(filter, order)) {
+            return false;
+          }
+          return true;
+        })
+        .filter((order) => {
+          if (!this._filterByCancellDate(filter, order)) {
+            return false;
+          }
+          return true;
+        });
+    }
   }
 
   private _filterByCreationDate(
