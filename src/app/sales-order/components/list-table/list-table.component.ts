@@ -33,6 +33,7 @@ export class ListTableComponent implements OnInit {
   showDetails(order: SalesOrder): void {
     const dialogRef = this.dialog.open(DialogCardComponent, {
       data: order,
+      width: '80%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
