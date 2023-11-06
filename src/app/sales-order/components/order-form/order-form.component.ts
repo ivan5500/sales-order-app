@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 import { noWhitespaces } from 'src/app/shared/validators';
 import { ItemService } from '../../services/item.service';
+import { VAT } from 'src/app/shared/util/constants';
 
 @Component({
   selector: 'sales-order-form',
@@ -21,6 +22,8 @@ export class OrderFormComponent {
   public cancelAddEvent: EventEmitter<boolean> = new EventEmitter();
 
   public items: Item[] = [];
+  public total = 0;
+  public subtotal = 0;
 
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
@@ -36,9 +39,15 @@ export class OrderFormComponent {
       },
       [Validators.required]
     ),
-    subtotal: new FormControl<number | null>({ value: 0, disabled: true }),
-    vat: new FormControl<number | null>({ value: 0, disabled: true }),
-    total: new FormControl<number | null>({ value: 0, disabled: true }),
+    subtotal: new FormControl<number>({ value: 0, disabled: true }, [
+      Validators.required
+    ]),
+    vat: new FormControl<number>({ value: VAT, disabled: true }, [
+      Validators.required
+    ]),
+    total: new FormControl<number>({ value: 0, disabled: true }, [
+      Validators.required
+    ]),
 
     items: new FormControl<Item[]>(this.items, [Validators.required]),
   });
@@ -46,11 +55,10 @@ export class OrderFormComponent {
   get newOrder(): SalesOrder {
     const order = this.orderForm.value as SalesOrder;
     order.creationDate = new Date();
+    order.subtotal = this.orderForm.controls.subtotal.value!;
+    order.vat = VAT;
+    order.total = this.orderForm.controls.total.value!;
     return order;
-  }
-
-  get subtotalItems(): number {
-    return this._itemService.getSubtotal(this.items);
   }
 
   constructor(
@@ -74,16 +82,20 @@ export class OrderFormComponent {
     this.cancelAddEvent.emit(true);
     this._router.navigate(['..']);
   }
-  public addItem(item: Item): void {
-    this.items = [item, ...this.items];
-    this.orderForm.controls.items.setValue(this.items);
-  }
   public openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddComponent, { data: {} });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (!result) return;
-      this.addItem(result);
+    dialogRef.afterClosed().subscribe((item) => {
+      if (!item) return;
+      this._addItem(item);
     });
+  }
+  public _addItem(item: Item): void {
+    this.items = [item, ...this.items];
+    this.orderForm.controls.items.setValue(this.items);
+    const total = this._itemService.getTotal(this.items, VAT);
+    const subtotal = this._itemService.getSubtotal(this.items);
+    this.orderForm.controls.total.setValue(total);
+    this.orderForm.controls.subtotal.setValue(subtotal);
   }
 }
