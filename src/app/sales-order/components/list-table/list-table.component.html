@@ -38,13 +38,13 @@
     <!-- vat Column -->
     <ng-container matColumnDef="vat">
       <th mat-header-cell *matHeaderCellDef>VAT</th>
-      <td mat-cell *matCellDef="let order">{{ order.vat }}</td>
+      <td mat-cell *matCellDef="let order">{{ order.vat | percent }}</td>
     </ng-container>
 
     <!-- Total Column -->
     <ng-container matColumnDef="total">
       <th mat-header-cell *matHeaderCellDef>Total</th>
-      <td mat-cell *matCellDef="let order">{{ order.total }}</td>
+      <td mat-cell *matCellDef="let order">{{ order.total | currency }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
