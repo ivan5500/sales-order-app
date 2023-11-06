@@ -1,28 +1,71 @@
 <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-  <label for="id">ID:</label>
-  <input id="id" type="text" formControlName="id" />
+  <mat-form-field class="w-100">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" />
+  </mat-form-field>
 
-  <label for="customer">Customer:</label>
-  <input id="customer" type="text" formControlName="customer" />
+  <mat-form-field class="w-100">
+    <mat-label>Customer</mat-label>
+    <input matInput value="Google" formControlName="customer" />
+  </mat-form-field>
 
-  <label for="creationDate">Creation Date:</label>
-  <input id="creationDate" type="text" formControlName="creationDate" />
+  <mat-form-field class="w-100">
+    <mat-label>Creation Date</mat-label>
+    <input matInput value="Google" formControlName="creationDate" />
+  </mat-form-field>
 
-  <button>Add Item</button>
+  <div class="row mb-2">
+    <div class="col">
+      <h4>Items</h4>
+    </div>
+    <div class="col" id="add-btn">
+      <button mat-mini-fab color="accent" aria-label="Add Item">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
   <sales-order-item-table
     *ngIf="newOrder.items?.length"
     [items]="newOrder.items!"
   ></sales-order-item-table>
 
-  <label for="subtotal">Subtotal:</label>
-  <input id="subtotal" type="number" formControlName="subtotal" />
-  <label for="vat">VAT:</label>
-  <input id="vat" type="number" formControlName="vat" />
-  <label for="total">Total:</label>
-  <input id="total" type="number" formControlName="total" />
+  <mat-form-field class="w-100">
+    <mat-label>Subtotal</mat-label>
+    <input matInput formControlName="subtotal" />
+  </mat-form-field>
 
-  <button type="button" (click)="onCancel()">Cancel</button>
-  <button type="submit" [disabled]="!orderForm.valid">Save</button>
+  <mat-form-field class="w-100">
+    <mat-label>VAT</mat-label>
+    <input matInput formControlName="vat" />
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Total</mat-label>
+    <input matInput formControlName="total" />
+  </mat-form-field>
+
+  <div class="row">
+    <div class="col">
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+    </div>
+    <div class="col" id="btn-submit">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!orderForm.valid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
 </form>
 
 <div>

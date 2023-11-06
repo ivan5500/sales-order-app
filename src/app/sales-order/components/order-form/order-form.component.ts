@@ -26,9 +26,9 @@ export class OrderFormComponent {
       value: new Date(),
       disabled: false,
     }),
-    subtotal: new FormControl<number | null>(null),
-    vat: new FormControl<number | null>(null),
-    total: new FormControl<number | null>(null),
+    subtotal: new FormControl<number | null>({ value: 0, disabled: true }),
+    vat: new FormControl<number | null>({ value: 0, disabled: true }),
+    total: new FormControl<number | null>({ value: 0, disabled: true }),
 
     items: new FormControl<Item[]>([]),
   });
