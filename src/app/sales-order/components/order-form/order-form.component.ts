@@ -27,7 +27,7 @@ export class OrderFormComponent {
     customer: new FormControl<string>('', [
       Validators.required,
       noWhitespaces,
-      Validators.maxLength(250),
+      Validators.maxLength(250)
     ]),
     creationDate: new FormControl<Date>(
       {

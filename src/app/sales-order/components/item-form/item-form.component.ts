@@ -20,7 +20,7 @@ export class ItemFormComponent {
     name: new FormControl<string>('', [
       Validators.required,
       noWhitespaces,
-      Validators.maxLength(250),
+      Validators.maxLength(250)
     ]),
     price: new FormControl<number | null>(null, [
       Validators.required,
