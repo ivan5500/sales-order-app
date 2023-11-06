@@ -2,10 +2,9 @@
   <mat-form-field class="w-100">
     <mat-label>Customer</mat-label>
     <input matInput formControlName="customer" />
-    <span
-      *ngIf="isValidField('customer')"
-      class="form-text text-danger"
-    >Required field</span>
+    <span *ngIf="isValidField('customer')" class="form-text text-danger"
+      >Required field</span
+    >
   </mat-form-field>
 
   <mat-form-field class="w-100">
@@ -31,6 +30,9 @@
       </button>
     </div>
   </div>
+  <span *ngIf="!this.items.length" class="form-text text-danger"
+    >Add at least one item</span
+  >
   <sales-order-item-table
     *ngIf="items.length"
     [items]="items"
