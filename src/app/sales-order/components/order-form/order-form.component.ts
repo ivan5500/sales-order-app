@@ -23,7 +23,11 @@ export class OrderFormComponent {
 
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
-    customer: new FormControl<string>('', [Validators.required, noWhitespaces]),
+    customer: new FormControl<string>('', [
+      Validators.required,
+      noWhitespaces,
+      Validators.maxLength(250),
+    ]),
     creationDate: new FormControl<Date>(
       {
         value: new Date(),
