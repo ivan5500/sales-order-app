@@ -2,15 +2,15 @@
   <div class="row text-center">
     <h1>Sale Order List</h1>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-3">
+  <div class="row justify-content-center mb-3">
+    <div class="col-sm-12 col-md-4 col-lg-3">
       <sales-order-filter-form
         (addFilterEvent)="addFilter($event)"
       ></sales-order-filter-form>
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-8">
+    <div class="col-sm-12 col-md-12 col-lg-10">
       <sales-order-list-table [orders]="orders"></sales-order-list-table>
     </div>
   </div>
