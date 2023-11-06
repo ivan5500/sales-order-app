@@ -24,6 +24,7 @@ export class OrderFormComponent {
   public items: Item[] = [];
   public total = 0;
   public subtotal = 0;
+  private _redirectPath = './list';
 
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
@@ -76,6 +77,7 @@ export class OrderFormComponent {
     this.orderForm.reset();
     this.orderForm.controls.creationDate.setValue(new Date());
     this.items = [];
+    this._router.navigate([this._redirectPath]);
   }
   public onCancel(): void {
     this.orderForm.reset();
