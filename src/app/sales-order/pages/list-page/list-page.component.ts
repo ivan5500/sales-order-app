@@ -19,4 +19,7 @@ export class ListPageComponent implements OnInit {
   public addFilter(filter: FilterSalesOrder): void {
     this.orders = this._salesOrderService.filterOrders(filter);
   }
+  public removeFilter(_: boolean): void {
+    this.orders = this._salesOrderService.getOrders();
+  }
 }
