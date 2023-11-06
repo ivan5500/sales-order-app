@@ -57,6 +57,6 @@ export class OrderFormComponent {
     this._router.navigate(['..']);
   }
   public addItem(item: Item): void {
-    this.newOrder.items?.push(item);
+    this.newOrder.items = [item, ...this.newOrder.items!];
   }
 }
