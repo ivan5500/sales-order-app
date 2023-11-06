@@ -9,6 +9,7 @@ import { Item } from '../../models/item.model';
 export class ItemTableComponent implements OnInit {
   @Input()
   public items: Item[] = [];
+  displayedColumns = ['name', 'price', 'quantity'];
 
   constructor() {}
   ngOnInit(): void {
