@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Sales Order</mat-card-title>
+      <mat-card-subtitle>ID: {{ order.id }}</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row mb-2 mt-5">
+      <div class="col-3">
+        <b>Customer:</b>
+      </div>
+      <div class="col">
+        {{ order.customer }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">
+        <b>Creation Date:</b>
+      </div>
+      <div class="col">
+        {{ order.creationDate | date : formatDate }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">
+        <b>Cancellation Date:</b>
+      </div>
+      <div class="col">
+        {{ order.cancellationDate | date : formatDate }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <sales-order-item-table [items]="order.items!"></sales-order-item-table>
+    </div>
+    <div class="row mb-2 justify-content-end">
+      <div class="col-2">
+        <b>Subtotal:</b>
+      </div>
+      <div class="col-2">
+        {{ order.subtotal | currency }}
+      </div>
+    </div>
+    <div class="row mb-2 justify-content-end">
+      <div class="col-2">
+        <b>VAT:</b>
+      </div>
+      <div class="col-2">
+        {{ order.vat | percent }}
+      </div>
+    </div>
+    <div class="row mb-2 justify-content-end">
+      <div class="col-2">
+        <b>Total:</b>
+      </div>
+      <div class="col-2">
+        {{ order.total | currency }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
