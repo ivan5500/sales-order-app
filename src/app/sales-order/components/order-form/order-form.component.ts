@@ -35,7 +35,7 @@ export class OrderFormComponent {
     vat: new FormControl<number | null>({ value: 0, disabled: true }),
     total: new FormControl<number | null>({ value: 0, disabled: true }),
 
-    items: new FormControl<Item[]>(this.items),
+    items: new FormControl<Item[]>(this.items, [Validators.required]),
   });
 
   get newOrder(): SalesOrder {
@@ -52,8 +52,6 @@ export class OrderFormComponent {
 
   public onSubmit(): void {
     if (this.orderForm.invalid) return;
-    this.newOrder.items = this.items;
-
     this.addOrderEvent.emit(this.newOrder);
     this._salesOrderService.addOrder(this.newOrder);
 
@@ -68,6 +66,7 @@ export class OrderFormComponent {
   }
   public addItem(item: Item): void {
     this.items = [item, ...this.items];
+    this.orderForm.controls.items.setValue(this.items);
   }
   public openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddComponent, { data: {} });
