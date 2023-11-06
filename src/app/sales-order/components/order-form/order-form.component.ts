@@ -31,7 +31,7 @@ export class OrderFormComponent {
     customer: new FormControl<string>('', [
       Validators.required,
       noWhitespaces,
-      Validators.maxLength(250)
+      Validators.maxLength(250),
     ]),
     creationDate: new FormControl<Date>(
       {
@@ -41,13 +41,13 @@ export class OrderFormComponent {
       [Validators.required]
     ),
     subtotal: new FormControl<number>({ value: 0, disabled: true }, [
-      Validators.required
+      Validators.required,
     ]),
     vat: new FormControl<number>({ value: VAT, disabled: true }, [
-      Validators.required
+      Validators.required,
     ]),
     total: new FormControl<number>({ value: 0, disabled: true }, [
-      Validators.required
+      Validators.required,
     ]),
 
     items: new FormControl<Item[]>(this.items, [Validators.required]),
