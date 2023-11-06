@@ -41,10 +41,13 @@ export class SalesOrderService {
     order: SalesOrder
   ): boolean {
     if (filter.rangeCreationDate.start) {
+      order.creationDate.setHours(0, 0, 0, 0);
+      filter.rangeCreationDate.start.setHours(0, 0, 0, 0);
+      filter.rangeCreationDate.end.setHours(0, 0, 0, 0);
       return (
         new Date(order.creationDate) >=
           new Date(filter.rangeCreationDate.start) &&
-        new Date(order.creationDate) <= new Date(filter.rangeCreationDate.start)
+        new Date(order.creationDate) <= new Date(filter.rangeCreationDate.end)
       );
     }
     return true;
@@ -54,6 +57,9 @@ export class SalesOrderService {
     order: SalesOrder
   ): boolean {
     if (filter.rangeCancellDate.start) {
+      order.cancellationDate.setHours(0, 0, 0, 0);
+      filter.rangeCancellDate.start.setHours(0, 0, 0, 0);
+      filter.rangeCancellDate.end.setHours(0, 0, 0, 0);
       return (
         new Date(order.cancellationDate) >=
           new Date(filter.rangeCancellDate.start) &&
