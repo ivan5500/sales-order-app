@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SalesOrder } from '../../models/sales-order.model';
 import { Item } from '../../models/item.model';
 import { Router } from '@angular/router';
 import { SalesOrderService } from '../../services/sales-order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
+import { noWhitespaces } from 'src/app/shared/validators';
 
 @Component({
   selector: 'sales-order-form',
@@ -22,11 +23,14 @@ export class OrderFormComponent {
 
   public orderForm = new FormGroup({
     id: new FormControl<string>({ value: '', disabled: true }),
-    customer: new FormControl<string>(''),
-    creationDate: new FormControl<Date>({
-      value: new Date(),
-      disabled: false,
-    }),
+    customer: new FormControl<string>('', [Validators.required, noWhitespaces]),
+    creationDate: new FormControl<Date>(
+      {
+        value: new Date(),
+        disabled: true,
+      },
+      [Validators.required]
+    ),
     subtotal: new FormControl<number | null>({ value: 0, disabled: true }),
     vat: new FormControl<number | null>({ value: 0, disabled: true }),
     total: new FormControl<number | null>({ value: 0, disabled: true }),
@@ -36,6 +40,7 @@ export class OrderFormComponent {
 
   get newOrder(): SalesOrder {
     const order = this.orderForm.value as SalesOrder;
+    order.creationDate = new Date();
     return order;
   }
 
@@ -53,6 +58,8 @@ export class OrderFormComponent {
     this._salesOrderService.addOrder(this.newOrder);
 
     this.orderForm.reset();
+    this.orderForm.controls.creationDate.setValue(new Date());
+    this.items = [];
   }
   public onCancel(): void {
     this.orderForm.reset();
