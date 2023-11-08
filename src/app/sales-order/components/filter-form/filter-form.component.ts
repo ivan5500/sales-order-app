@@ -26,7 +26,7 @@ export class FilterFormComponent {
   });
 
   public onSubmit(): void {
-    if (this.filterForm.invalid) return;
+    if (this._isEmptyForm()) return;
 
     const filter = this.filterForm.value as FilterSalesOrder;
 
@@ -36,5 +36,15 @@ export class FilterFormComponent {
   public onReset(): void {
     this.filterForm.reset();
     this.resetFilterEvent.emit(true);
+  }
+
+  private _isEmptyForm(): boolean {
+    if (
+      this.filterForm.value.rangeCreationDate?.end ||
+      this.filterForm.value.rangeCancellDate?.end
+    ) {
+      return false;
+    }
+    return true;
   }
 }
