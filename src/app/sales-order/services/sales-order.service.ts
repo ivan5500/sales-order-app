@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import { SalesOrder } from '../models/sales-order.model';
 import { FilterSalesOrder } from '../models/filter-sales-order.model';
+import { SalesOrderInterface } from './sales-order.interface';
+import { Observable, ReplaySubject, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SalesOrderService {
+export class SalesOrderService implements SalesOrderInterface {
   public orders: SalesOrder[] = [];
+  public orders$: ReplaySubject<SalesOrder[]> = new ReplaySubject(1);
 
-  constructor() {
-    this._loadLocalStorage();
+  constructor() {}
+
+  public getOrders(): Observable<SalesOrder[]> {
+    this.orders$.next(this._loadLocalStorage());
+    return this.orders$.pipe(map((orders) => (this.orders = orders)));
   }
 
-  public getOrders(): SalesOrder[] {
-    console.log(this.orders);
-    return [...this.orders];
-  }
-
-  public addOrder(order: SalesOrder): SalesOrder {
+  public addOrder(order: SalesOrder): Observable<SalesOrder> {
     const newOrder: SalesOrder = { id: this._generateId(), ...order };
     this.orders.push(newOrder);
     this._saveLocalStorage();
-    return newOrder;
+    return of(newOrder);
   }
-  public cancelOrder(orderC: SalesOrder): SalesOrder {
+  public cancelOrder(orderC: SalesOrder): Observable<SalesOrder> {
     orderC.isCancel = true;
     orderC.cancellationDate = new Date();
     this.orders = this.orders.map((order) => {
@@ -33,7 +34,7 @@ export class SalesOrderService {
       return order;
     });
     this._saveLocalStorage();
-    return orderC;
+    return of(orderC);
   }
 
   public filterOrders(filter: FilterSalesOrder): SalesOrder[] {
@@ -118,9 +119,10 @@ export class SalesOrderService {
     return 'ID_SO' + Math.floor(Math.random() * 100);
   }
 
-  private _loadLocalStorage(): void {
-    if (!localStorage.getItem('orders')) return;
-    this.orders = JSON.parse(localStorage.getItem('orders')!);
+  private _loadLocalStorage(): SalesOrder[] {
+    if (!localStorage.getItem('orders')) return [];
+    const orders = JSON.parse(localStorage.getItem('orders')!);
+    return orders;
   }
 
   private _saveLocalStorage(): void {
