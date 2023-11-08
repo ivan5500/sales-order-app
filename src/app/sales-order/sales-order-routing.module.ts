@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManagementPageComponent } from './pages/management-page/management-page.component';
-import { ListPageComponent } from './pages/list-page/list-page.component';
-
 
 const routes: Routes = [
   {
@@ -16,7 +14,13 @@ const routes: Routes = [
             (m) => m.AddOrderPageModule
           ),
       },
-      { path: 'list', component: ListPageComponent },
+      {
+        path: 'list',
+        loadChildren: () =>
+          import('./pages/list-page/list-page.module').then(
+            (m) => m.ListPageModule
+          ),
+      },
       { path: '**', redirectTo: 'list' },
     ],
   },
