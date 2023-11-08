@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddOrderPageComponent } from './add-order-page.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { OrderFormComponent } from '../../components/order-form/order-form.component';
-import { AddOrderPageRoutingModule } from './add-order-page.routing';
+import { AddOrderPageRoutingModule } from './add-order-page-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ItemFormComponent } from '../../components/item-form/item-form.component';
 import { DialogAddComponent } from '../../components/dialog-add/dialog-add.component';
