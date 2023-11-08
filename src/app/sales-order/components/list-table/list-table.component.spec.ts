@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListTableComponent } from './list-table.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 describe('ListTableComponent', () => {
   let component: ListTableComponent;
@@ -8,6 +9,7 @@ describe('ListTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [MaterialModule],
       declarations: [ListTableComponent]
     });
     fixture = TestBed.createComponent(ListTableComponent);
